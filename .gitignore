@@ -1,0 +1,7 @@
+target/
+bin/
+
+*.db
+*.log
+
+# /*.db would ignore files only in .gitignore directory
