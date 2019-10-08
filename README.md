@@ -1,2 +1,2 @@
-# git-training
-First part of Q&amp;A automation course in BSU19
+#automation-training
+These are my notes for automation-training-2019 in bsu.
