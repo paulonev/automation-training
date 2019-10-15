@@ -1,7 +1,12 @@
-target/
-bin/
-.vscode/
+#what won't be tracked
+target/*
+bin/*
+obj/*
 *.db
 *.log
-
+file.txt
+/TriangleService/TriangleService/bin/*
+/TriangleService/TriangleService/obj/*
+/TriangleService/TriangleService.Tests/bin/*
+/TriangleService/TriangleService.Tests/obj/*
 # /*.db would ignore files only in .gitignore directory
