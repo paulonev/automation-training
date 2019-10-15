@@ -1,0 +1,5 @@
+#not track bin, obj folders
+
+bin/*
+obj/*
+
