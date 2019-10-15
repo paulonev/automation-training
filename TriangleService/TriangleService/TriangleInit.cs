@@ -17,8 +17,7 @@ namespace TriangleServices
 
         public bool IsPossibleTriangle()
         {
-            if (A==0 || B==0 || C==0) return false;
-            else if(A+B>=C && A+C>=B && B+C>=A) return true;
+            if(A+B>C && A+C>B && B+C>A) return true;
             else return false;
         }
     }
