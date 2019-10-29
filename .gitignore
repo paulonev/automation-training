@@ -9,4 +9,6 @@ file.txt
 /TriangleService/TriangleService/obj/*
 /TriangleService/TriangleService.Tests/bin/*
 /TriangleService/TriangleService.Tests/obj/*
+/TriangleService/TriangleService.Exceptions/bin/*
+/TriangleService/TriangleService.Exceptions/obj/*
 # /*.db would ignore files only in .gitignore directory
