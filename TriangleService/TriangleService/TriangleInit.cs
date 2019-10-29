@@ -1,4 +1,5 @@
-﻿using System;
+﻿//using System;
+using TriangleServices.Exceptions;
 
 namespace TriangleServices
 {
@@ -10,6 +11,7 @@ namespace TriangleServices
 
         public TriangleInit(int x, int y, int z)
         {
+            if(x<0 || y<0 || z<0) throw new NegativeValueOfSideException("Negative side...");
             A = x;
             B = y;
             C = z;
