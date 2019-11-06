@@ -1,0 +1,6 @@
+!!!IMPORTANT FOR TESTING!!!
+If you decide to have a visual of your .NET test-cases
+Then you mush specify local workspace var 
+[dotnet-test-explorer.testProjectPath] = "**/*[name of your testing .csproj]"
+
+

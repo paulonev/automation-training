@@ -11,4 +11,5 @@ file.txt
 /TriangleService/TriangleService.Tests/obj/*
 /TriangleService/TriangleService.Exceptions/bin/*
 /TriangleService/TriangleService.Exceptions/obj/*
+/TriangleService/.vscode/*
 # /*.db would ignore files only in .gitignore directory
