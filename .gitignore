@@ -12,4 +12,11 @@ file.txt
 /TriangleService/TriangleService.Exceptions/bin/*
 /TriangleService/TriangleService.Exceptions/obj/*
 /TriangleService/.vscode/*
+/WebDriverTesting/.idea/*
+/WebDriverTesting/PageObjectModel/Page/bin/*
+/WebDriverTesting/PageObjectModel/Page/obj/*
+/WebDriverTesting/PageObjectModel/Test/bin/*
+/WebDriverTesting/PageObjectModel/Test/obj/*
+/WebDriverTesting/Tests/bin/*
+/WebDriverTesting/Tests/obj/*
 # /*.db would ignore files only in .gitignore directory
