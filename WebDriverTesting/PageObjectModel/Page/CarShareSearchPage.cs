@@ -9,43 +9,33 @@ using SeleniumExtras.PageObjects;
 
 namespace WebDriver.Page
 {
-    public class SeleniumHQSearchPage
+    public class CarShareSearchPage
     {
         private IWebDriver driver;
-        private IWebElement inputStreetField;
-//        private string searchString;
-//        public IWebElement InputStreetField { get; set; }
 
-
-        [FindsBy(How = How.CssSelector, Using = "div.location-input-wrapper")]
-        public IWebElement InputStreetField
-        {
-            get => inputStreetField;
-            set => inputStreetField = value;
-        }
+        [FindsBy(How = How.CssSelector, Using = ".location-input")]
+        public IWebElement InputStreetField { get; set; }
         
-//            => new WebDriverWait(this.driver, TimeSpan.FromSeconds(40))
-//            .Until(d=>d.FindElement(By.XPath("//input[@type='text']")));
-
         //internal page content to be private
         //*[@id='resInfo-0']
         public ReadOnlyCollection<IWebElement> SearchResults { get; set; }
         
-      public SeleniumHQSearchPage(IWebDriver driver)
+      public CarShareSearchPage(IWebDriver driver)
       {
             this.driver = driver;
-            //this.driver.Url = driver.Url + "cars";
             PageFactory.InitElements(driver, this);
+            //this.driver.Url = driver.Url + "cars";
       }
-      public SeleniumHQSearchPage SearchForTerms(string searchString)
+      public CarShareSearchPage SearchForTerms(string searchString)
       {
-          InputStreetField = driver.FindElement(By.CssSelector("input.location-input"));
-          string js = "arguments[0].setAttribute('value','" + searchString + "')";
-          ((IJavaScriptExecutor) driver).ExecuteScript(js, inputStreetField);
-          
-          //inputStreetField.SendKeys(searchString);
+//          InputStreetField = driver.FindElement(By.CssSelector(".location-input"));
+          WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+          wait.Until(ExpectedConditions.ElementExists(By.CssSelector(".location-input")));
+          InputStreetField.SendKeys(searchString);
+          InputStreetField.SendKeys(Keys.Enter);
           return this;
       }
+      
 //        public SeleniumHQSearchResultsPage(IWebDriver driver, string searchString)
 //        {
 //            this.driver = driver;
