@@ -1,12 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using WebDriver.Page;
 
@@ -18,7 +15,8 @@ namespace WebDriver.Tests
         private IWebDriver driver;
         private string HOMEPAGE_URL = "https://getaround.com/";
 
-        [FindsBy(How = How.XPath, Using = "//a[text() = 'Continue with Google']")]
+//        [FindsBy(How = How.XPath, Using = "//a[text() = 'Continue with Google']")]
+        [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
         public IWebElement GoogleBtn { get; set; }
 
         [SetUp]
@@ -39,28 +37,25 @@ namespace WebDriver.Tests
         [Test]
         public void CheckSearchResultsAmount()
         {
-            CarShareSearchPage sp = new CarShareHomePage(driver)
-                .OpenHomePage()
-                .Login();
-            
-            int expectedSearchResultsNumber = sp
+            CarShareHomePage sp = new CarShareHomePage(driver).OpenHomePage();
+
+            int expectedSearchResultsNumber = sp.Login()
                 .SearchForTerms("6th Street, Los Angeles, CA, USA")
                 .CountSearchResults();
 
-
-//            int expectedSearchResultsNumber = new SeleniumHQHomePage(driver)
-//                .OpenHomePage()
-//                .LogInByGoogle()
-//                .GotoSearchPage()
-//                .SearchForTerms("6th Street, Los Angeles, CA, USA")
-//                .CountSearchResults();
-
             Assert.IsTrue(expectedSearchResultsNumber > 0, "Search results are empty!");
-
-            //Assert.IsTrue(page.FieldEmailExists());
-            //Console.WriteLine("Search results number for requested term: " + searchResults.Count);
-            //Thread.Sleep(5000); wrong to use, not 
         }
+
+        //Open home page, login by Google, input search terms for location and select wrong data intervals
+        [Test]
+        public void TestOfInvalidTimeIntervals()
+        {
+            CarShareHomePage homePage = new CarShareHomePage(driver).OpenHomePage();
+
+            homePage.Login().SearchForTerms("6th Street, Los Angeles, CA, USA");
+            
+        }
+
 
 //        [Test]
 //        public void IsAlertPresent()

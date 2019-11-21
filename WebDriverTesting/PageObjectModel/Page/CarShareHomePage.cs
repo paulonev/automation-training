@@ -10,25 +10,22 @@ namespace WebDriver.Page
     //homepage
     public class CarShareHomePage
     {
-        private string HOMEPAGE_URL = "https://getaround.com/";
+        private string HOMEPAGE_URL = "https://getaround.com/cars";
         private IWebDriver driver;
         
-        [FindsBy(How = How.XPath, Using = "//a[@href='/cars']")]
-        public IWebElement SearchCarBtn { get; set; }
-        
-        [FindsBy(How = How.XPath, Using = "//a[text() = 'Continue with Google']")]
+        [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
         public IWebElement GoogleBtn { get; set; }
         
         public CarShareHomePage(IWebDriver driver)
         {
             this.driver = driver;
+            this.driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
             PageFactory.InitElements(driver,this);
         }
 
         public CarShareHomePage OpenHomePage()
         {
-//            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(40);
-            driver.Url = HOMEPAGE_URL;
+            driver.Navigate().GoToUrl(HOMEPAGE_URL);
             return this;
         }
 
@@ -42,7 +39,7 @@ namespace WebDriver.Page
             string Popup = windows[1];
             driver.SwitchTo().Window(Popup);
             
-//            Thread.Sleep(5000);
+            //            Thread.Sleep(5000);
             
             //            WebDriverWait waitForLogin = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 //            waitForLogin.Until(ExpectedConditions.ElementExists(By.CssSelector(".location-input")));           
@@ -53,19 +50,22 @@ namespace WebDriver.Page
 //            }
             
 //            driver.SwitchTo().Window(MainWindow);
-            new GoogleLoginPage(driver).LogInGoogle();
             
-            driver.SwitchTo().Window(windows[0]);
+            GoogleLoginPage loginPage = new GoogleLoginPage(driver);
+            loginPage.LogInGoogle();
+
+            driver.SwitchTo().Window(MainWindow);
+            
             return new CarShareSearchPage(driver);
             
         }
-        public CarShareSearchPage OpenSearchPage()
-        {
-            IJavaScriptExecutor je = (IJavaScriptExecutor) driver;
-            je.ExecuteScript("arguments[0].click();", SearchCarBtn);   
-            
-            return new CarShareSearchPage(driver);
-        }
+        //        private CarShareSearchPage OpenSearchPage()
+//        {
+//            IJavaScriptExecutor je = (IJavaScriptExecutor) driver;
+//            je.ExecuteScript("arguments[0].click();", SearchCarBtn);   
+//            
+//            return new CarShareSearchPage(driver);
+//        }
 
         
         //            var alert = driver.SwitchTo().Alert();

@@ -23,14 +23,12 @@ namespace WebDriver.Page
       public CarShareSearchPage(IWebDriver driver)
       {
             this.driver = driver;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
+            wait.Until(ExpectedConditions.ElementExists(By.CssSelector(".location-input")));
             PageFactory.InitElements(driver, this);
-            //this.driver.Url = driver.Url + "cars";
       }
       public CarShareSearchPage SearchForTerms(string searchString)
       {
-//          InputStreetField = driver.FindElement(By.CssSelector(".location-input"));
-          WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-          wait.Until(ExpectedConditions.ElementExists(By.CssSelector(".location-input")));
           InputStreetField.SendKeys(searchString);
           InputStreetField.SendKeys(Keys.Enter);
           return this;

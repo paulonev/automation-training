@@ -19,7 +19,7 @@ namespace WebDriver.Page
         public IWebElement MovingForwardBtn { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//*[@id='passwordNext']")]
-        public IWebElement MovingForwardBtn2 { get; set; }
+        public IWebElement FinishLoginBtn { get; set; }
         
         //field for email
         [FindsBy(How = How.CssSelector, Using = "#identifierId")]
@@ -38,18 +38,16 @@ namespace WebDriver.Page
         public void LogInGoogle()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.ElementExists(By.CssSelector("#identifierId")));
+            wait.Until(d=>d.FindElement(By.CssSelector("#identifierId")));
             EmailField.SendKeys("bobpixelgun@gmail.com");
+//            driver.FindElement(By.CssSelector("#identifierId")).SendKeys("bobpixelgun@gmail.com");
             ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();", MovingForwardBtn);
 
-            wait.Until(ExpectedConditions.ElementExists
-                (By.CssSelector(".I0VJ4d > div:nth-child(1) > input")));
+            wait.Until(d=>d.FindElement(By.CssSelector(".I0VJ4d > div:nth-child(1) > input")));
+//            driver.FindElement(By.CssSelector(".I0VJ4d > div:nth-child(1) > input")).SendKeys("Romashka_01");
             PassField.SendKeys("Romashka_01");
             
-            ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();", MovingForwardBtn2);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            
-//            return new CarShareSearchPage(driver);
+            ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();", FinishLoginBtn);
         }
 
 
