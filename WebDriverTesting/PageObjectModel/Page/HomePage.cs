@@ -8,28 +8,26 @@ using SeleniumExtras.PageObjects;
 namespace WebDriver.Page
 {
     //homepage
-    public class CarShareHomePage
+    public class HomePage : AbstractPage
     {
         private string HOMEPAGE_URL = "https://getaround.com/cars";
-        private IWebDriver driver;
         
         [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
         public IWebElement GoogleBtn { get; set; }
-        
-        public CarShareHomePage(IWebDriver driver)
+
+        public HomePage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
-            this.driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
-            PageFactory.InitElements(driver,this);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
         }
 
-        public CarShareHomePage OpenHomePage()
+        public override AbstractPage OpenPage()
         {
             driver.Navigate().GoToUrl(HOMEPAGE_URL);
             return this;
+//            return WaitForLoading("/cars", driver, HOMEPAGE_URL);
         }
 
-        public CarShareSearchPage Login()
+        public override AbstractPage Login()
         {
             string MainWindow = driver.CurrentWindowHandle;
             
@@ -38,6 +36,12 @@ namespace WebDriver.Page
 
             string Popup = windows[1];
             driver.SwitchTo().Window(Popup);
+            
+            //initialize new pageObject instance and perform a method
+//            new GoogleLoginPage(driver).LogInGoogle();
+//            driver.SwitchTo().Window(MainWindow);
+
+            return new GoogleLoginPage(driver).LogInGoogle();
             
             //            Thread.Sleep(5000);
             
@@ -50,15 +54,20 @@ namespace WebDriver.Page
 //            }
             
 //            driver.SwitchTo().Window(MainWindow);
-            
-            GoogleLoginPage loginPage = new GoogleLoginPage(driver);
-            loginPage.LogInGoogle();
-
-            driver.SwitchTo().Window(MainWindow);
-            
-            return new CarShareSearchPage(driver);
-            
         }
+
+        public override int CountSearchResults()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override AbstractPage SearchForTerms(string src)
+        {
+            throw new NotImplementedException();
+        }
+
+        //add method that waits for page loading
+        
         //        private CarShareSearchPage OpenSearchPage()
 //        {
 //            IJavaScriptExecutor je = (IJavaScriptExecutor) driver;

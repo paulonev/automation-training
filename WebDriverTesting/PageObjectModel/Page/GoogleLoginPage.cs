@@ -7,17 +7,16 @@ using SeleniumExtras.PageObjects;
 
 namespace WebDriver.Page
 {
-    public class GoogleLoginPage
+    public class GoogleLoginPage : AbstractPage
     {
-        private IWebDriver driver;
+        private static string email = "bobpixelgun@gmail.com";
+        private static string pwd = "Romashka_01";
 
-        //field for email 
-        //private IWebElement emailField;
-
-        //button for moving forward
+        //btn for proceed
         [FindsBy(How = How.XPath, Using = "//*[@id='identifierNext']")]
         public IWebElement MovingForwardBtn { get; set; }
 
+        //btn for finishing login
         [FindsBy(How = How.XPath, Using = "//*[@id='passwordNext']")]
         public IWebElement FinishLoginBtn { get; set; }
         
@@ -29,29 +28,54 @@ namespace WebDriver.Page
         [FindsBy(How = How.CssSelector, Using = ".I0VJ4d > div:nth-child(1) > input")]
         public IWebElement PassField { get; set; }
 
-        public GoogleLoginPage(IWebDriver driver)
+        public GoogleLoginPage(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
-            PageFactory.InitElements(driver, this);
+            this.OpenPage();
         }
 
-        public void LogInGoogle()
+        public override AbstractPage OpenPage()
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(d=>d.FindElement(By.CssSelector("#identifierId")));
-            EmailField.SendKeys("bobpixelgun@gmail.com");
-//            driver.FindElement(By.CssSelector("#identifierId")).SendKeys("bobpixelgun@gmail.com");
+            return WaitForLoading("app", driver);
+        }
+
+        public override AbstractPage Login()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override AbstractPage SearchForTerms(string src)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override int CountSearchResults()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public SearchPage LogInGoogle()
+        {
+            EmailField = WaitForElementOnPage(By.CssSelector("#identifierId"));
+            EmailField.SendKeys(email);
+            Thread.Sleep(500);
             ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();", MovingForwardBtn);
-
-            wait.Until(d=>d.FindElement(By.CssSelector(".I0VJ4d > div:nth-child(1) > input")));
-//            driver.FindElement(By.CssSelector(".I0VJ4d > div:nth-child(1) > input")).SendKeys("Romashka_01");
-            PassField.SendKeys("Romashka_01");
-            
+            Thread.Sleep(1000);
+            PassField = WaitForElementOnPage(By.CssSelector(".I0VJ4d > div:nth-child(1) > input"));
+            PassField.SendKeys(pwd);
+            Thread.Sleep(500);
             ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();", FinishLoginBtn);
+            //auto-open of search page
+            return new SearchPage(driver);
         }
 
-
-    //        public bool FieldEmailExists()
+        private IWebElement WaitForElementOnPage(By by)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            return wait.Until(drv => drv.FindElement(by));
+        }
+        
+        //        public bool FieldEmailExists()
 //        {
 //            try
 //            {

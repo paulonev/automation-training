@@ -37,9 +37,10 @@ namespace WebDriver.Tests
         [Test]
         public void CheckSearchResultsAmount()
         {
-            CarShareHomePage sp = new CarShareHomePage(driver).OpenHomePage();
-
-            int expectedSearchResultsNumber = sp.Login()
+            AbstractPage homePage = new HomePage(driver).OpenPage();
+            
+            int expectedSearchResultsNumber = homePage
+                .Login()
                 .SearchForTerms("6th Street, Los Angeles, CA, USA")
                 .CountSearchResults();
 
@@ -50,9 +51,9 @@ namespace WebDriver.Tests
         [Test]
         public void TestOfInvalidTimeIntervals()
         {
-            CarShareHomePage homePage = new CarShareHomePage(driver).OpenHomePage();
+//            HomePage homePage = new HomePage(driver).OpenPage();
 
-            homePage.Login().SearchForTerms("6th Street, Los Angeles, CA, USA");
+//            homePage.Login().SearchForTerms("6th Street, Los Angeles, CA, USA");
             
         }
 
