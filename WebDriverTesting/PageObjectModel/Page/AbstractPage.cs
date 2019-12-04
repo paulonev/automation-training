@@ -13,11 +13,12 @@ namespace WebDriver.Page
 
         [FindsBy(How = How.XPath, Using = "//body")]
         public IWebElement Body { get; set; }
-        
+
         public abstract AbstractPage OpenPage();
-        public abstract AbstractPage Login();
-        public abstract AbstractPage SearchForTerms(string src);
-        public abstract int CountSearchResults();
+        
+//        public abstract AbstractPage Login();
+//        public abstract AbstractPage SearchForTerms(string src);
+//        public abstract int CountSearchResults();
         
         protected AbstractPage(IWebDriver driver)
         {
@@ -25,13 +26,13 @@ namespace WebDriver.Page
             PageFactory.InitElements(driver, this);
         }
 
-        protected AbstractPage WaitForLoading(string urlContains, IWebDriver driver, string URL = "")
+        protected void WaitForLoading(string urlContains, IWebDriver driver, string URL = "")
         {
             if(URL != "") driver.Navigate().GoToUrl(URL);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(LOAD_TIMEOUT));
-            wait.Until(ExpectedConditions.UrlContains(urlContains));
+            wait.Until(ExpectedConditions.UrlContains(urlContains)); //method falls
 
-            return this;
+//            return this;
         }
 
         protected void FocusAway()

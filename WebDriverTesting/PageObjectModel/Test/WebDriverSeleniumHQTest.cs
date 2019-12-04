@@ -37,13 +37,14 @@ namespace WebDriver.Tests
         [Test]
         public void CheckSearchResultsAmount()
         {
-            AbstractPage homePage = new HomePage(driver).OpenPage();
+            HomePage homePage = (HomePage)new HomePage(driver).OpenPage();
+            SearchPage sp = (SearchPage)homePage.Login();
             
-            int expectedSearchResultsNumber = homePage
-                .Login()
-                .SearchForTerms("6th Street, Los Angeles, CA, USA")
+            int expectedSearchResultsNumber = sp
+                .SearchForTerms("9th Avenue, New York, NY, USA")
                 .CountSearchResults();
-
+            
+            Console.WriteLine(expectedSearchResultsNumber);
             Assert.IsTrue(expectedSearchResultsNumber > 0, "Search results are empty!");
         }
 

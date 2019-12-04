@@ -20,6 +20,7 @@ namespace WebDriver.Page
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
         }
 
+//        public override AbstractPage OpenPage()
         public override AbstractPage OpenPage()
         {
             driver.Navigate().GoToUrl(HOMEPAGE_URL);
@@ -27,7 +28,7 @@ namespace WebDriver.Page
 //            return WaitForLoading("/cars", driver, HOMEPAGE_URL);
         }
 
-        public override AbstractPage Login()
+        public AbstractPage Login()
         {
             string MainWindow = driver.CurrentWindowHandle;
             
@@ -41,10 +42,11 @@ namespace WebDriver.Page
 //            new GoogleLoginPage(driver).LogInGoogle();
 //            driver.SwitchTo().Window(MainWindow);
 
-            return new GoogleLoginPage(driver).LogInGoogle();
-            
+            new GoogleLoginPage(driver).LogInGoogle();
+            driver.SwitchTo().Window(windows[0]);
+            return new SearchPage(driver);
             //            Thread.Sleep(5000);
-            
+
             //            WebDriverWait waitForLogin = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 //            waitForLogin.Until(ExpectedConditions.ElementExists(By.CssSelector(".location-input")));           
 
@@ -52,19 +54,20 @@ namespace WebDriver.Page
 //            {
 //                Console.WriteLine(window);
 //            }
-            
+
 //            driver.SwitchTo().Window(MainWindow);
         }
 
-        public override int CountSearchResults()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override AbstractPage SearchForTerms(string src)
-        {
-            throw new NotImplementedException();
-        }
+        //
+//        public override int CountSearchResults()
+//        {
+//            throw new NotImplementedException();
+//        }
+//
+//        public override AbstractPage SearchForTerms(string src)
+//        {
+//            throw new NotImplementedException();
+//        }
 
         //add method that waits for page loading
         

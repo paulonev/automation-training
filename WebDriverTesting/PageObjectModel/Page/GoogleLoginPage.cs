@@ -35,26 +35,23 @@ namespace WebDriver.Page
 
         public override AbstractPage OpenPage()
         {
-            return WaitForLoading("app", driver);
+            WaitForLoading("signin", driver);
+            return this;
         }
 
-        public override AbstractPage Login()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override AbstractPage SearchForTerms(string src)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int CountSearchResults()
-        {
-            throw new NotImplementedException();
-        }
+        //        public override AbstractPage SearchForTerms(string src)
+//        {
+//            throw new NotImplementedException();
+//        }
+//        public override int CountSearchResults()
+//        {
+//            throw new NotImplementedException();
+//        }
 
 
-        public SearchPage LogInGoogle()
+        //SearchPage
+        //AbstractPage
+        public void LogInGoogle()
         {
             EmailField = WaitForElementOnPage(By.CssSelector("#identifierId"));
             EmailField.SendKeys(email);
@@ -66,7 +63,8 @@ namespace WebDriver.Page
             Thread.Sleep(500);
             ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();", FinishLoginBtn);
             //auto-open of search page
-            return new SearchPage(driver);
+//            Thread.Sleep(TimeSpan.FromSeconds(20));
+//            return new SearchPage(driver).OpenPage();
         }
 
         private IWebElement WaitForElementOnPage(By by)
