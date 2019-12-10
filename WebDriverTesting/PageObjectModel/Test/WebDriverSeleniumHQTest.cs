@@ -1,5 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Runtime.Serialization;
 using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -12,8 +14,13 @@ namespace WebDriver.Tests
     [TestFixture]
     public class SeleniumTests
     {
+//        private static DateTimeFormat DTF = new DateTimeFormat("dd/MM/yyyy");
+
         private IWebDriver driver;
         private string HOMEPAGE_URL = "https://getaround.com/";
+
+        private readonly string INVALID_TIMERANGE_MSG =
+            "Please select a valid time range.";
 
 //        [FindsBy(How = How.XPath, Using = "//a[text() = 'Continue with Google']")]
         [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
@@ -48,15 +55,27 @@ namespace WebDriver.Tests
             Assert.IsTrue(expectedSearchResultsNumber > 0, "Search results are empty!");
         }
 
-        //Open home page, login by Google, input search terms for location and select wrong data intervals
+        //Open home page, login by Google, input search terms for location, choose first car and
+        //pick wrong Start date
         [Test]
         public void TestOfInvalidTimeIntervals()
         {
-//            HomePage homePage = new HomePage(driver).OpenPage();
+            HomePage homePage = (HomePage)new HomePage(driver).OpenPage();
+            SearchPage sp = (SearchPage)homePage.Login();
 
-//            homePage.Login().SearchForTerms("6th Street, Los Angeles, CA, USA");
-            
+            CarSummaryPage csp = sp
+                .SearchForTerms("9th Avenue, New York, NY, USA")
+                .SelectCar();
+
+            Assert.AreEqual(INVALID_TIMERANGE_MSG,csp.PickDate("13/12/2019"));
         }
+
+//        [Test]
+//        public void DateTimeTest()
+//        {
+//            DateTime dt = DateTime.ParseExact("13/08/2020", DTF.FormatString , CultureInfo.InvariantCulture);
+//            Console.WriteLine(dt.Day);
+//        }
 
 
 //        [Test]

@@ -9,6 +9,7 @@ namespace WebDriver.Page
     public abstract class AbstractPage
     {
         protected static int LOAD_TIMEOUT = 40;
+        protected static int TIME_TO_FIND_ELEMENT = 30;
         protected IWebDriver driver;
 
         [FindsBy(How = How.XPath, Using = "//body")]
