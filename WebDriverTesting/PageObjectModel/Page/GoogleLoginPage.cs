@@ -30,10 +30,10 @@ namespace WebDriver.Page
 
         public GoogleLoginPage(IWebDriver driver) : base(driver)
         {
-            this.OpenPage();
+            OpenPage("blank");
         }
 
-        public override AbstractPage OpenPage()
+        public override AbstractPage OpenPage(string url)
         {
             WaitForLoading("signin", driver);
             return this;
@@ -62,6 +62,7 @@ namespace WebDriver.Page
             PassField.SendKeys(pwd);
             Thread.Sleep(500);
             ((IJavaScriptExecutor) driver).ExecuteScript("arguments[0].click();", FinishLoginBtn);
+            
             //auto-open of search page
 //            Thread.Sleep(TimeSpan.FromSeconds(20));
 //            return new SearchPage(driver).OpenPage();

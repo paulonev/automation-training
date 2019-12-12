@@ -84,7 +84,7 @@ namespace WebDriver.Page
             return wait.Until(drv => drv.FindElements(by));
         }
 
-        public override AbstractPage OpenPage()
+        public override AbstractPage OpenPage(string url)
         {
             throw new System.NotImplementedException();
         }

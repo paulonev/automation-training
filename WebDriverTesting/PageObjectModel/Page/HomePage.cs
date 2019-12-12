@@ -10,9 +10,7 @@ namespace WebDriver.Page
     //homepage
     public class HomePage : AbstractPage
     {
-        private string HOMEPAGE_URL = "https://getaround.com/cars";
-        
-        [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
+       [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
         public IWebElement GoogleBtn { get; set; }
 
         public HomePage(IWebDriver driver) : base(driver)
@@ -20,12 +18,12 @@ namespace WebDriver.Page
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
         }
 
-//        public override AbstractPage OpenPage()
-        public override AbstractPage OpenPage()
+        public override AbstractPage OpenPage(string url)
         {
-            driver.Navigate().GoToUrl(HOMEPAGE_URL);
+            driver.Url = url;
+            driver.Navigate().GoToUrl(driver.Url);
+            driver.Manage().Window.Maximize();
             return this;
-//            return WaitForLoading("/cars", driver, HOMEPAGE_URL);
         }
 
         public AbstractPage Login()
@@ -57,6 +55,12 @@ namespace WebDriver.Page
 
 //            driver.SwitchTo().Window(MainWindow);
         }
+
+        //        public AbstractPage OpenHelpPage(string HelpPage_Url)
+//        {
+//            WaitForElementsToBeVisible(By.XPath("//a[@href='"+HelpPage_Url+"']"))[0].Click();
+//            return new HelpPage(driver).OpenPage(HelpPage_Url);
+//        }
 
         //
 //        public override int CountSearchResults()

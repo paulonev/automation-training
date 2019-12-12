@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -15,7 +16,7 @@ namespace WebDriver.Page
         [FindsBy(How = How.XPath, Using = "//body")]
         public IWebElement Body { get; set; }
 
-        public abstract AbstractPage OpenPage();
+        public abstract AbstractPage OpenPage(string url);
         
 //        public abstract AbstractPage Login();
 //        public abstract AbstractPage SearchForTerms(string src);
@@ -35,6 +36,19 @@ namespace WebDriver.Page
 
 //            return this;
         }
+        
+        protected ReadOnlyCollection<IWebElement> FindElementsBy(By by)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(TIME_TO_FIND_ELEMENT));
+            return wait.Until(drv => drv.FindElements(by));
+        }
+        
+        protected IWebElement WaitForElementToBeVisible(By by)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(TIME_TO_FIND_ELEMENT));
+            return wait.Until(ExpectedConditions.ElementIsVisible(by));
+        }
+
 
         protected void FocusAway()
         {
