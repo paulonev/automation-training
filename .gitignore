@@ -19,4 +19,26 @@ file.txt
 /WebDriverTesting/PageObjectModel/Test/obj/*
 /WebDriverTesting/Tests/bin/*
 /WebDriverTesting/Tests/obj/*
+
+/WebDriverTesting/Framework/Driver/bin/*
+/WebDriverTesting/Framework/Driver/obj/*
+
+/WebDriverTesting/Framework/Model/bin/*
+/WebDriverTesting/Framework/Model/obj/*
+
+/WebDriverTesting/Framework/Pages/bin/*
+/WebDriverTesting/Framework/Pages/obj/*
+
+/WebDriverTesting/Framework/Service/bin/*
+/WebDriverTesting/Framework/Service/obj/*
+
+/WebDriverTesting/Framework/Tests/bin/*
+/WebDriverTesting/Framework/Tests/obj/*
+
+/WebDriverTesting/Framework/Steps/bin/*
+/WebDriverTesting/Framework/Steps/obj/*
+
+
+
+
 # /*.db would ignore files only in .gitignore directory
