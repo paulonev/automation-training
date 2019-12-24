@@ -12,31 +12,32 @@ file.txt
 /TriangleService/TriangleService.Exceptions/bin/*
 /TriangleService/TriangleService.Exceptions/obj/*
 /TriangleService/.vscode/*
-/WebDriverTesting/.idea/*
-/WebDriverTesting/PageObjectModel/Page/bin/*
-/WebDriverTesting/PageObjectModel/Page/obj/*
-/WebDriverTesting/PageObjectModel/Test/bin/*
-/WebDriverTesting/PageObjectModel/Test/obj/*
-/WebDriverTesting/Tests/bin/*
-/WebDriverTesting/Tests/obj/*
 
-/WebDriverTesting/Framework/Driver/bin/*
-/WebDriverTesting/Framework/Driver/obj/*
+/.idea/*
+/PageObjectModel/Page/bin/*
+/PageObjectModel/Page/obj/*
+/PageObjectModel/Test/bin/*
+/PageObjectModel/Test/obj/*
+/Tests/bin/*
+/Tests/obj/*
 
-/WebDriverTesting/Framework/Model/bin/*
-/WebDriverTesting/Framework/Model/obj/*
+/Framework/Driver/bin/*
+/Framework/Driver/obj/*
 
-/WebDriverTesting/Framework/Pages/bin/*
-/WebDriverTesting/Framework/Pages/obj/*
+/Framework/Model/bin/*
+/Framework/Model/obj/*
 
-/WebDriverTesting/Framework/Service/bin/*
-/WebDriverTesting/Framework/Service/obj/*
+/Framework/Pages/bin/*
+/Framework/Pages/obj/*
 
-/WebDriverTesting/Framework/Tests/bin/*
-/WebDriverTesting/Framework/Tests/obj/*
+/Framework/Service/bin/*
+/Framework/Service/obj/*
 
-/WebDriverTesting/Framework/Steps/bin/*
-/WebDriverTesting/Framework/Steps/obj/*
+/Framework/Tests/bin/*
+/Framework/Tests/obj/*
+
+/Framework/Steps/bin/*
+/Framework/Steps/obj/*
 
 
 
