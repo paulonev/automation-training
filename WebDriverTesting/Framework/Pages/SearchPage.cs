@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
+using Castle.Components.DictionaryAdapter;
 using OpenQA.Selenium;
 //using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
@@ -27,12 +28,11 @@ namespace WebDriver.Pages
 
         public SearchPage(IWebDriver driver) : base(driver)
         {
-//            OpenPage("blank");
+            PageFactory.InitElements(_driver, this);
         }
 
-        public override AbstractPage OpenPage(string url)
+        public override AbstractPage OpenPage(string url="")
         {
-            _driver.Url = url;
             new WebDriverWait(_driver, TimeSpan.FromSeconds(LOAD_TIMEOUT))
                   .Until(ExpectedConditions.ElementToBeClickable(By.CssSelector(".location-input")));
             return this;
@@ -59,16 +59,15 @@ namespace WebDriver.Pages
 
         public CarSummaryPage SelectCar()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             FindElementsBy(
               By.CssSelector("#search-results-list > div:nth-child(1) > div.car-row > div.car-basics > a"))[0].Click();
           
-            return new CarSummaryPage(_driver);
+            return (CarSummaryPage)new CarSummaryPage(_driver).OpenPage();
         }
-        
-        
-      
-       //By.CssSelector("div#search-results-list") check that amount of results != 0
+
+
+        //By.CssSelector("div#search-results-list") check that amount of results != 0
         public int CountSearchResults()
         {
             SearchResults = FindElementsBy(By.XPath(firstElementInResultsList));

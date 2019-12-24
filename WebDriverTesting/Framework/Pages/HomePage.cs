@@ -11,19 +11,18 @@ namespace WebDriver.Pages
     //homepage
     public class HomePage : AbstractPage
     {
-       [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
+        [FindsBy(How = How.CssSelector, Using = "button.ProviderButton--google")]
         public IWebElement GoogleBtn { get; set; }
 
         public HomePage(IWebDriver driver) : base(driver)
         {
-            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
+            _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(60);
+            PageFactory.InitElements(_driver, this);
         }
 
-        public override AbstractPage OpenPage(string url)
+        public override AbstractPage OpenPage(string url="")
         {
             _driver.Url = url;
-            _driver.Navigate().GoToUrl(_driver.Url);
-            _driver.Manage().Window.Maximize();
             return this;
         }
 
@@ -36,12 +35,14 @@ namespace WebDriver.Pages
 
             string Popup = windows[1];
             _driver.SwitchTo().Window(Popup);
-            
-            new GoogleLoginPage(_driver).LogInGoogle(user);
+
+            GoogleLoginPage loginPage = (GoogleLoginPage) new GoogleLoginPage(_driver).OpenPage();
+            loginPage.LogInGoogle(user);
             _driver.SwitchTo().Window(windows[0]);
-            return new SearchPage(_driver);
+            return new SearchPage(_driver).OpenPage();
             
         }
+
 
         //        public AbstractPage OpenHelpPage(string HelpPage_Url)
 //        {

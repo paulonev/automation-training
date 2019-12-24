@@ -4,12 +4,13 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using WebDriver.Driver;
 
 namespace WebDriver.Pages
 {
     public abstract class AbstractPage
     {
-        protected static int LOAD_TIMEOUT = 40;
+        protected static int LOAD_TIMEOUT = 20;
         protected static int TIME_TO_FIND_ELEMENT = 30;
 
         protected IWebDriver _driver;
@@ -17,18 +18,18 @@ namespace WebDriver.Pages
         [FindsBy(How = How.XPath, Using = "//body")]
         public IWebElement Body { get; set; }
 
-        public abstract AbstractPage OpenPage(string url);
+        public abstract AbstractPage OpenPage(string url = "");
         
         protected AbstractPage(IWebDriver driver)
         {
             _driver = driver;
-            PageFactory.InitElements(driver, this);
+            PageFactory.InitElements(_driver, this);
             _driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(LOAD_TIMEOUT);
         }
 
         protected void WaitForLoading(string urlContains, IWebDriver driver, string URL = "")
         {
-            if(URL != "") driver.Navigate().GoToUrl(URL);
+            if(URL != "") driver.Url = URL;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(LOAD_TIMEOUT));
             wait.Until(ExpectedConditions.UrlContains(urlContains)); //method falls
         }

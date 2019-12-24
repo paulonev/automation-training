@@ -19,10 +19,10 @@ namespace WebDriver.Tests
     public class SeleniumTests
     {
 //        private static DateTimeFormat DTF = new DateTimeFormat("dd/MM/yyyy");
-        
         private IWebDriver driver;
-        private string HOMEPAGE = "https://getaround.com/cars";
-        private string HOMEPAGE_URL = "https://getaround.com";
+        
+        private string HOMEPAGE_URL = "https://getaround.com/cars";  
+        private string SOMEPAGE = "https://getaround.com";
         private string HELPPAGE_URL = "https://help.getaround.com/";
         private string TRIPSPAGE_URL = "https://getaround.com/trips";
         
@@ -52,19 +52,14 @@ namespace WebDriver.Tests
         public void CheckSearchResultsAmount()
         {
             User user = UserCreator.TakeStaticCredentials();
-//            TestingSteps steps = new TestingSteps();
-//            steps.OpenHomePage(HOMEPAGE);
-//            steps.LoginUser(user);
-//            steps.SelectBy("9th Avenue, New York, NY, USA");
-            
-            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE);
+
+            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE_URL);
             SearchPage sp = (SearchPage) homePage.Login(user);
 
             int expectedSearchResultsNumber = sp
                 .SearchForTerms("9th Avenue, New York, NY, USA", false)
                 .CountSearchResults();
 
-            Console.WriteLine(expectedSearchResultsNumber);
             Assert.IsTrue(expectedSearchResultsNumber > 0, "Search results are empty!");
         }
 
@@ -74,30 +69,31 @@ namespace WebDriver.Tests
         public void TestOfInvalidTimeIntervals()
         {
             User user = UserCreator.TakeStaticCredentials();
-            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE);
+            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE_URL);
             SearchPage sp = (SearchPage) homePage.Login(user);
 
             CarSummaryPage csp = sp
                 .SearchForTerms("9th Avenue, New York, NY, USA",false)
                 .SelectCar();
 
-            Assert.AreEqual(INVALID_TIMERANGE_MSG, csp.PickDate("13/12/2019"));
+            Assert.AreEqual(INVALID_TIMERANGE_MSG, csp.PickDate("26/12/2019"));
         }
 
+        
+        
         [TestCase("Chevrolet", "Chicago, IL, USA")]
         public void CountPickupsByMakeAndCityTest(string carMake, string loc)
         {
             User user = UserCreator.TakeStaticCredentials();
             //For example to test that there are more than 1 Toyota pickups in New York for renting
-            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE);
+            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE_URL);
             SearchPage sp = (SearchPage) homePage.Login(user);
 
             int expectedSearchResultsNumber = sp
                 .SearchForTerms(loc, true)
                 .CountSearchResultsCategory(carMake);
 
-            Console.WriteLine(expectedSearchResultsNumber);
-            Assert.IsTrue(expectedSearchResultsNumber > 0, $"No {carMake} are available in '{loc}'");
+            Assert.AreEqual(0, expectedSearchResultsNumber);
 
         }
         
@@ -115,7 +111,7 @@ namespace WebDriver.Tests
         public void ViewUserTripsTest()
         {
             User user = UserCreator.TakeStaticCredentials();
-            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE);
+            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE_URL);
             SearchPage sp = (SearchPage) homePage.Login(user);
             int expected = sp.OpenUserTripsPage(TRIPSPAGE_URL).CountUserTrips();
             
@@ -130,7 +126,7 @@ namespace WebDriver.Tests
         {
             User user = UserCreator.TakeStaticCredentials();
             //return how many cars can user afford to rent
-            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE);
+            HomePage homePage = (HomePage) new HomePage(driver).OpenPage(HOMEPAGE_URL);
             SearchPage sp = (SearchPage) homePage.Login(user);
 
             
@@ -168,7 +164,7 @@ namespace WebDriver.Tests
         [Test]
         public void CheckWindows()
         {
-            driver.Navigate().GoToUrl(HOMEPAGE);
+            driver.Navigate().GoToUrl(HOMEPAGE_URL);
             PageFactory.InitElements(driver, this);
             GoogleBtn.Click();
             
