@@ -35,8 +35,8 @@ namespace WebDriver.Tests
         [SetUp]
         public void OpenBrowser()
         {
-            driver = DriverInstance.GetInstance();
-            //driver = new FirefoxDriver();
+            //driver = DriverInstance.GetInstance();
+            driver = new FirefoxDriver();
             //driver.Url = "http://www.seleniumhq.org/";
             //driver.Manage().Window.Maximize();
             //general timeouts
