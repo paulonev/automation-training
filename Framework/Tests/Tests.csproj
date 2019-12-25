@@ -28,6 +28,10 @@
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
 
+    <PackageReference Include="Selenium.WebDriver.GeckoDriver" Version="0.26.0">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+
   </ItemGroup>
 
   <ItemGroup>
