@@ -45,6 +45,13 @@ namespace WebDriver.Tests
 
         }
 
+        [Test]
+        public void TestForFun()
+        {
+            int i = 5;
+            Assert.AreEqual(5,i);
+        }
+        
         //We automate test that opens home page of web application, moves to it's searching cars page
         //Inputs given term of location and counts results of search query and stores it in 
         //[expectedSearchResultsNumber] variable
