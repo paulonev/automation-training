@@ -36,12 +36,12 @@ namespace WebDriver.Tests
         public void OpenBrowser()
         {
             driver = DriverInstance.GetInstance();
-            //driver = new FirefoxDriver();
-            //driver.Url = "http://www.seleniumhq.org/";
-            //driver.Manage().Window.Maximize();
-            //general timeouts
-            //driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+//            driver = new FirefoxDriver();
+//            driver.Url = "http://www.seleniumhq.org/";
+//            driver.Manage().Window.Maximize();
+//            general timeouts
+//            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+//            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
         }
 
