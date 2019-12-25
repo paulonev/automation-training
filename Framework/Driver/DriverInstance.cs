@@ -34,7 +34,7 @@ namespace WebDriver.Driver
                     default:
                     {
                         //new DriverManager().SetUpDriver(new FirefoxConfig());
-                        driver = new FirefoxDriver("/home/vsts/work/1/s/Resources/");
+                        driver = new FirefoxDriver("/Resources/");
                         break;
                     }
                 }
