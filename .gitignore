@@ -39,7 +39,11 @@ file.txt
 /Framework/Steps/bin/*
 /Framework/Steps/obj/*
 
+/EpicGames/Pages/bin/*
+/EpicGames/Pages/obj/*
 
+/EpicGames/Tests/bin/*
+/EpicGames/Tests/obj/*
 
 
 # /*.db would ignore files only in .gitignore directory
