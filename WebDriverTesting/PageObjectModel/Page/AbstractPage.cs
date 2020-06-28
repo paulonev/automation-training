@@ -28,7 +28,7 @@ namespace WebDriver.Page
             PageFactory.InitElements(driver, this);
         }
 
-        protected void WaitForLoading(string urlContains, IWebDriver driver, string URL = "")
+        protected void WaitForLoading(string urlContains, string URL = "")
         {
             if(URL != "") driver.Navigate().GoToUrl(URL);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(LOAD_TIMEOUT));

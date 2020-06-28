@@ -35,7 +35,7 @@ namespace WebDriver.Page
 
         public override AbstractPage OpenPage(string url)
         {
-            WaitForLoading("signin", driver);
+            WaitForLoading("signin");
             return this;
         }
 
