@@ -1,42 +1,47 @@
 #what won't be tracked
 target/*
-bin/*
-obj/*
+/**/bin/*
+/**/obj/*
+#bin/*
+#obj/*
 *.db
 *.log
 file.txt
-/TriangleService/TriangleService/bin/*
-/TriangleService/TriangleService/obj/*
-/TriangleService/TriangleService.Tests/bin/*
-/TriangleService/TriangleService.Tests/obj/*
-/TriangleService/TriangleService.Exceptions/bin/*
-/TriangleService/TriangleService.Exceptions/obj/*
+
+#/TriangleService/TriangleService/bin/*
+#/TriangleService/TriangleService/obj/*
+#/TriangleService/TriangleService.Tests/bin/*
+#/TriangleService/TriangleService.Tests/obj/*
+#/TriangleService/TriangleService.Exceptions/bin/*
+#/TriangleService/TriangleService.Exceptions/obj/*
+
 /TriangleService/.vscode/*
 /WebDriverTesting/.idea/*
-/WebDriverTesting/PageObjectModel/Page/bin/*
-/WebDriverTesting/PageObjectModel/Page/obj/*
-/WebDriverTesting/PageObjectModel/Test/bin/*
-/WebDriverTesting/PageObjectModel/Test/obj/*
-/WebDriverTesting/Tests/bin/*
-/WebDriverTesting/Tests/obj/*
 
-/WebDriverTesting/Framework/Driver/bin/*
-/WebDriverTesting/Framework/Driver/obj/*
+#/WebDriverTesting/PageObjectModel/Page/bin/*
+#/WebDriverTesting/PageObjectModel/Page/obj/*
+#/WebDriverTesting/PageObjectModel/Test/bin/*
+#/WebDriverTesting/PageObjectModel/Test/obj/*
+#/WebDriverTesting/Tests/bin/*
+#/WebDriverTesting/Tests/obj/*
 
-/WebDriverTesting/Framework/Model/bin/*
-/WebDriverTesting/Framework/Model/obj/*
+#/WebDriverTesting/Framework/Driver/bin/*
+#/WebDriverTesting/Framework/Driver/obj/*
 
-/WebDriverTesting/Framework/Pages/bin/*
-/WebDriverTesting/Framework/Pages/obj/*
+#/WebDriverTesting/Framework/Model/bin/*
+#/WebDriverTesting/Framework/Model/obj/*
 
-/WebDriverTesting/Framework/Service/bin/*
-/WebDriverTesting/Framework/Service/obj/*
+#/WebDriverTesting/Framework/Pages/bin/*
+#/WebDriverTesting/Framework/Pages/obj/*
 
-/WebDriverTesting/Framework/Tests/bin/*
-/WebDriverTesting/Framework/Tests/obj/*
+#/WebDriverTesting/Framework/Service/bin/*
+#/WebDriverTesting/Framework/Service/obj/*
 
-/WebDriverTesting/Framework/Steps/bin/*
-/WebDriverTesting/Framework/Steps/obj/*
+#/WebDriverTesting/Framework/Tests/bin/*
+#/WebDriverTesting/Framework/Tests/obj/*
+
+#/WebDriverTesting/Framework/Steps/bin/*
+#/WebDriverTesting/Framework/Steps/obj/*
 
 
 

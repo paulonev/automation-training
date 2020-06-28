@@ -29,10 +29,10 @@ namespace WebDriver.Pages
 
         public GoogleLoginPage(IWebDriver driver) : base(driver)
         {
-            OpenPage("blank");
+            PageFactory.InitElements(_driver, this);
         }
 
-        public override AbstractPage OpenPage(string url)
+        public override AbstractPage OpenPage(string url="")
         {
             WaitForLoading("signin", _driver);
             return this;

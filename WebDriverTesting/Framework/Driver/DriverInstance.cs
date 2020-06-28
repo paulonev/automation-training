@@ -33,7 +33,7 @@ namespace WebDriver.Driver
                     }
                     default:
                     {
-                        new DriverManager().SetUpDriver(new FirefoxConfig());
+                        //new DriverManager().SetUpDriver(new FirefoxConfig());
                         driver = new FirefoxDriver();
                         break;
                     }

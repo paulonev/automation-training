@@ -35,8 +35,8 @@ namespace WebDriver.Pages
             StartDateElement.Click();
 
             IWebElement dateBlock = WaitForElementsToBeVisible(By.XPath(
-                "/html/body/div[5]/div[4]/div/div[2]/div/div/div/div[1]/div[2]/div/div[1]/div[1]" +
-                "/div[1]/div/div/div/div/div/table/tbody/tr/td/div[contains(text(),"+day+")]"
+                "/html/body/div[6]/div[4]/div/div[2]/div/div/div/div[1]/div[2]/div/div[1]/div[1]" +
+                "/div[1]/div/div/div/div/div/table/tbody/tr[4]/td[6]/div[contains(text(),"+day+")]"
             ))[0];
             
             dateBlock.Click();
@@ -50,7 +50,7 @@ namespace WebDriver.Pages
             //_datePickerPage = new DatePickerPage(driver);
             //_datePickerPage.SetDate(date);
         }
-        
+
         
         //        private void SetDate(String date)
 //        {
@@ -84,9 +84,9 @@ namespace WebDriver.Pages
             return wait.Until(drv => drv.FindElements(by));
         }
 
-        public override AbstractPage OpenPage(string url)
+        public override AbstractPage OpenPage(string url="")
         {
-            throw new System.NotImplementedException();
+            return this;
         }
 
     }
